@@ -82,7 +82,7 @@ You may find `\FloatBarrier` useful if your figures or tables are running off to
 
 {{< pagebreak >}}
 
-![Figure](frog.eps){#fig-frog}
+![Figure](figs/frog.eps){#fig-frog}
 
 \FloatBarrier <!-- always leave a blank line between this and figures --->
 
