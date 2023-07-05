@@ -16,5 +16,8 @@ contributes:
         - jabbrv-ltwa-all.ldf
         - jabbrv-ltwa-en.ldf
         - pnas-logo.png
+      template-partials:
+        - "partials/doc-class.tex"
+        - "partials/title.tex"
       
 

@@ -2,7 +2,7 @@
 title: Quarto Template for PNAS SI Submissions
 format:
   pnas-si-pdf:
-    keep-tex: true  
+    keep-tex: false  
 author:
   - name: Author One
     affiliations:
@@ -36,18 +36,20 @@ author:
     affiliations:
       - ref: a
 bibliography: bibliography.bib  
+fontsize: "9pt"
+classoption:
+ - twoside
 ---
 
-\noindent This PNAS template for Supporting Information (SI) may be used to organize your supporting material. \textbf{Once formatted, this first page should be deleted by removing the \texttt{\textbackslash instructionspage} command.} The template is intended to provide a clearly organized PDF file that will ensure readers can easily navigate to sections or specific figures and tables. Movie files or large datasets can be presented as separate files. Further information is available in the [PNAS Author Center](https://www.pnas.org/authors/submitting-your-manuscript). 
+\noindent This PNAS template for Supporting Information (SI) may be used to organize your supporting material. The template is intended to provide a clearly organized PDF file that will ensure readers can easily navigate to sections or specific figures and tables. Movie files or large datasets can be presented as separate files. Further information is available in the [PNAS Author Center](https://www.pnas.org/authors/submitting-your-manuscript). 
 
 ## Using the template {.unnumbered}
 
-Specify the title, author list, and corresponding authors with the same YAML specification as in the [corresponding PNAS Quarto template](). The cover page will be automatically generated with the relevant description of the SI.
-
+Specify the title, author list, and corresponding authors with the same YAML specification as in the [corresponding PNAS Quarto template](https://github.com/christopherkenny/pnas). The cover page will be automatically generated with the relevant description of the SI.
 
 Figures should be placed on separate pages with legends set immediately below each figure. Table titles should be set immediately above each table. Note that tables extending beyond the width of the page can be included in the PDF or provided as separate dataset files. Oversized/nonstandard page sizes are accepted as part of your SI Appendix file.
 
-References cited in the SI text should be included in a separate reference list at the end of this SI file: \cite{varga2016multilingual} and \cite{olsen1992optimal}.
+References cited in the SI text should be included in a separate reference list at the end of this SI file: @varga2016multilingual and @olsen1992optimal.
 
 Supporting information for Brief Reports is limited to extended methods, essential supporting datasets, and videos (no additional tables or figures). Supporting figures and tables are not allowed for Brief Reports.
 
@@ -62,7 +64,7 @@ Type or paste text here. This should be additional explanatory text such as an e
 
 # Heading
 ## Subhead {.unnumbered}
-Type or paste text here. You may break this section up into subheads as needed (e.g., one section on ``Materials'' and one on ``Methods'').
+Type or paste text here. You may break this section up into subheads as needed (e.g., one section on "Materials" and one on "Methods").
 
 ## Materials {.unnumbered}
 Add a materials subsection if you need to.
@@ -70,35 +72,39 @@ Add a materials subsection if you need to.
 ## Methods {.unnumbered}
 Add a methods subsection if you need to.
 
+Figures should be cross-referenced like @fig-frog.
+Each figure should be on its own page. 
+You can control this by placing a pagebreak shortcode, with `{{< pagebreak >}}`.
 
-%%% Each figure should be on its own page
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{example-image}
-\caption{First figure}
-\end{figure}
+This can also be done with LaTeX's `\newpage` command. 
+You may find `\FloatBarrier` useful if your figures or tables are running off to the wrong pages.
 
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{frog}
-\caption{Second figure}
-\end{figure}
 
-\begin{table}\centering
-\caption{This is a table}
+{{< pagebreak >}}
 
-\begin{tabular}{lrrr}
-Species & CBS & CV & G3 \\
-\midrule
-1. Acetaldehyde & 0.0 & 0.0 & 0.0 \\
-2. Vinyl alcohol & 9.1 & 9.6 & 13.5 \\
-3. Hydroxyethylidene & 50.8 & 51.2 & 54.0\\
-\bottomrule
-\end{tabular}
-\end{table}
+![Figure](frog.eps){#fig-frog}
 
-%%% Add this line AFTER all your figures and tables
+\FloatBarrier <!-- always leave a blank line between this and figures --->
+
+{{< pagebreak >}}
+
 \FloatBarrier
+<!-- use these FloatBarrier calls to avoid true-to-the-theme jumping ahead of the frog --->
+
+|Species | CBS | CV | G3 |
+|:-------|----:|---:|---:|
+Acetaldehyde | 0.0 | 0.0 | 0.0 |
+Vinyl alcohol | 9.1 | 9.6 | 13.5 |
+Hydroxyethylidene | 50.8 | 51.2 | 54.0 |
+
+: Simple table example {#tbl-simple}
+
+{{< pagebreak >}}
+
+## Movies and Datasets {.unnumbered}
+
+If your document relies on movies or datasets, please list them here with their captions.
+Use the `movie{your caption}` and `\dataset{file_name.ext}{your caption}` commands to do so.
 
 \movie{Type legend for the movie here.}
 
@@ -110,4 +116,9 @@ Species & CBS & CV & G3 \\
 
 \dataset{dataset_two.txt}{Type or paste legend here. Adding longer text to show what happens, to decide on alignment and/or indentations for multi-line or paragraph captions.}
 
+# References
 
+<!-- references for the SI go here. The below div controls its printing --->
+
+:::{#refs}
+:::

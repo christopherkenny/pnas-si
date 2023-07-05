@@ -30,14 +30,14 @@ format:
 
 ## Options
 
-*TODO*: If your format has options that can be set via document metadata, describe them.
+By default, `classoption` is set to `twoside`. This should generally be left as-is.
 
 ## Example
 
 Here is the source code for a minimal sample document: [template.qmd](template.qmd).
 
-<!-- pdftools::pdf_convert('template.pdf',pages = 1) 
-![[template.qmd](template.qmd)](template_1.png) -->
+<!-- pdftools::pdf_convert('template.pdf',pages = 1) -->
+![[template.qmd](template.qmd)](template_1.png)
 
 ## License
 
